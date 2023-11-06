@@ -1,0 +1,49 @@
+image: python:latest
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+
+stages:
+  - test
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+
+before_script:
+  - python --version ; pip --version
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+
+backend_test:
+  stage: test
+  script:
+    - pytest projects/backend --alluredir=allure_results
+  artifacts:
+    when: always
+    paths:
+      - allure_results/*
+
+frontend_test:
+  stage: test
+  script:
+    - playwright install
+    - playwright install-deps
+    - pytest projects/frontend --browser webkit --browser firefox --browser chromium --alluredir=allure_results
+  artifacts:
+    when: always
+    paths:
+      - allure_results/*
+
+deploy:
+  stage: deploy
+  script: echo "Define your deployment script!"
+  environment: production

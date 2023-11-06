@@ -1,0 +1,11 @@
+[project]
+name = "exercise_b"
+description = "doing an exercise for interview"
+version = "0.1.0"
+authors = [{name = "Robert Katona", email = "katona.robert0@gmail.com"}]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+profile = "black"

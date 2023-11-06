@@ -1,0 +1,20 @@
+{
+    "configs": [
+        {
+            "uri": "https://api-staging-builder.engineer.ai",
+            "users": [
+                {
+                    "email": "mi.more.email@gmail.com"
+                }
+            ]
+        },
+        {
+            "uri": "https://api-production-builder.engineer.ai",
+            "users": [
+                {
+                    "email": "someone_prod@gmail.com"
+                }
+            ]
+        }
+    ]
+}

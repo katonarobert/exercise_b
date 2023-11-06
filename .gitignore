@@ -1,0 +1,9 @@
+# Ignore env and vscode related files
+.env
+settings.json
+
+# Ignore all pyc files
+__pycache__
+
+# Ignore report files
+allure_results

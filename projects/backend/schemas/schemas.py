@@ -1,0 +1,125 @@
+from dataclasses import dataclass
+
+from pytest_schema import Regex
+
+INTEGER_PATTERN = "[0-9]+"
+FLOAT_PATTERN = "[0-9]+(.[0-9]+)?"
+
+
+@dataclass
+class Schemas:
+    registration_schema = {
+        "user": {
+            "first_name": str,
+            "last_name": str,
+            "email": str,
+            "password": str,
+            "phone_number": str,
+            "user_type": "User",
+            "currency_id": int,
+            "utm_campaign": str,
+            "utm_source": str,
+            "utm_medium": str,
+            "utm_content": str,
+            "utm_term": str,
+        }
+    }
+    successful_sign_in = {
+        "user": {
+            "id": int,
+            "first_name": str,
+            "last_name": str,
+            "email": str,
+            "nda_signed": bool,
+            "source": str,
+            "phone_number": str,
+            "signup_stage": None,
+            "utm_source": str,
+            "utm_campaign": str,
+            "utm_medium": str,
+            "pm_dashboard_token": str,
+            "user_type": "User",
+            "origin": str,
+            "address_disabled": bool,
+            "organisation": None,
+            "billing_entity": str,
+            "bant_answers": list,
+            "spec_call_nda_signed": None,
+            "enterprise_lead": bool,
+            "profile_image": None,
+            "referral_code": str,
+            "price_multiplier": float,
+            "enable_referral_code": bool,
+            "region": str,
+            "sub_region": str,
+            "message_preferences": None,
+            "bypass_bnpl": bool,
+            "user_profiles": list,
+            "authtoken": str,
+            "currency": {
+                "data": {
+                    "id": Regex(INTEGER_PATTERN),
+                    "type": str,
+                    "attributes": {
+                        "id": int,
+                        "name": str,
+                        "code": str,
+                        "exchange_rate": float,
+                        "multiplier": float,
+                        "symbol": str,
+                        "country_code": str,
+                        "default_store_promo_code": str,
+                        "specing_price": float,
+                        "icon_image_file_url": str,
+                        "instant_spec_price": float,
+                        "custom_prototype_price": float,
+                        "post_upfront_price": float,
+                        "effective_upfront_discount": float,
+                        "tax_type": str,
+                        "tax": int,
+                    },
+                }
+            },
+            "roles": str,
+            "running_project_count": int,
+            "external_billing_accounts": object,
+            "vip": bool,
+            "setting": {"avatar_details": object},
+            "company_id": None,
+            "address": {
+                "id": int,
+                "addresseable_id": int,
+                "addresseable_type": "User",
+                "address": str,
+                "city": str,
+                "state": None,
+                "country": str,
+                "pincode": str,
+                "phone": str,
+                "street": str,
+                "apartment": str,
+                "gst_number": str,
+                "company_name": str,
+                "first_name": str,
+                "last_name": str,
+                "address_line_2": str,
+                "billed_as": str,
+                "vat_number": None,
+                "pan_number": None,
+                "tan_number": None,
+                "tin_number": None,
+                "registration_type": str,
+                "zero_gst": None,
+                "tax_details_disabled": False,
+                "gst_tds_number": None,
+                "sales_tax_number": None,
+                "customer_business_category": None,
+                "sez_doc": None,
+            },
+        },
+        "message": "Signed in successfully",
+    }
+    email_not_registered = {
+        "message": "Sign in failure",
+        "errors": {"email": ["is not Registered"]},
+    }
