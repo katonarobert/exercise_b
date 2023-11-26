@@ -1,6 +1,6 @@
-# Exercise B
+# Exercise Pytest + Playwright
 
-
+This exercise to perform end to end testing with Pytest and Playwright.
 
 ## Getting started
 
